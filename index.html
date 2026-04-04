@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Masters 2026 — Calcutta Cheat Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #1a4a2e;
+    --green-mid: #2d6b44;
+    --green-light: #4a9a6a;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --cream: #f7f2e8;
+    --cream-dark: #ede5d4;
+    --white: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #5a5a5a;
+    --red: #c0392b;
+    --blue: #1a4a7a;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'IBM Plex Sans', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream);
+    color: var(--text);
+    font-family: var(--font-body);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--green);
+    padding: 2.5rem 2rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    border: 40px solid rgba(201,168,76,0.12);
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 10%;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    border: 25px solid rgba(201,168,76,0.08);
+  }
+  .header-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+  .header-top { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .masthead { }
+  .masthead-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .masthead h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    color: var(--white);
+    line-height: 1.05;
+    font-weight: 900;
+  }
+  .masthead h1 span { color: var(--gold); }
+  .masthead-sub {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: rgba(255,255,255,0.65);
+    margin-top: 8px;
+    letter-spacing: 0.02em;
+  }
+
+  .payout-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 1.5rem; }
+  .payout-pill {
+    background: rgba(255,255,255,0.08);
+    border: 0.5px solid rgba(201,168,76,0.35);
+    border-radius: 4px;
+    padding: 8px 14px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+  }
+  .payout-pill .pp-label { color: rgba(255,255,255,0.5); display: block; margin-bottom: 2px; }
+  .payout-pill .pp-val { color: var(--gold-light); font-weight: 500; font-size: 13px; }
+
+  /* MAIN */
+  .main { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+  /* CAP TRACKER */
+  .cap-section {
+    background: var(--white);
+    border: 1px solid var(--cream-dark);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .cap-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
+  .cap-bar-wrap { flex: 1; min-width: 120px; }
+  .cap-bar-bg {
+    background: var(--cream-dark);
+    border-radius: 4px;
+    height: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cap-bar-fill {
+    height: 10px;
+    border-radius: 4px;
+    background: var(--green-light);
+    transition: width 0.3s, background 0.3s;
+  }
+  .cap-number {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .cap-roster {
+    font-size: 13px;
+    color: var(--text-muted);
+    width: 100%;
+    display: none;
+    padding-top: 10px;
+    border-top: 1px solid var(--cream-dark);
+    margin-top: 10px;
+    line-height: 1.6;
+  }
+  .roster-tag {
+    display: inline-block;
+    background: var(--cream);
+    border: 1px solid var(--cream-dark);
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 12px;
+    margin: 2px;
+    font-family: var(--font-mono);
+    cursor: pointer;
+  }
+  .roster-tag:hover { background: #fce; border-color: var(--red); color: var(--red); }
+
+  /* CONTROLS */
+  .controls {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .search-wrap { position: relative; flex: 1; min-width: 200px; }
+  .search-wrap input {
+    width: 100%;
+    padding: 9px 12px 9px 36px;
+    border: 1px solid var(--cream-dark);
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    background: var(--white);
+    color: var(--text);
+    outline: none;
+  }
+  .search-wrap input:focus { border-color: var(--green-light); }
+  .search-icon {
+    position: absolute;
+    left: 11px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 15px;
+    pointer-events: none;
+  }
+  .filter-btn {
+    padding: 8px 14px;
+    font-size: 12px;
+    font-family: var(--font-mono);
+    border: 1px solid var(--cream-dark);
+    border-radius: 6px;
+    cursor: pointer;
+    background: var(--white);
+    color: var(--text-muted);
+    transition: all 0.15s;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .filter-btn:hover { border-color: var(--green-light); color: var(--green); }
+  .filter-btn.on { background: var(--green); color: var(--white); border-color: var(--green); }
+
+  /* TABLE */
+  .table-wrap {
+    background: var(--white);
+    border: 1px solid var(--cream-dark);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .table-scroll { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead { background: var(--green); }
+  th {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.6);
+    text-align: left;
+    padding: 11px 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.15s;
+  }
+  th:hover, th.sorted { color: var(--gold-light); }
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--cream-dark);
+    vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #faf8f3; }
+  tr.in-roster td { background: #f0f7f2; }
+  tr.in-roster:hover td { background: #e6f2ea; }
+
+  .player-name { font-weight: 600; font-size: 13px; }
+  .player-name.favorite { color: var(--green); }
+
+  .odds-tag {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .win-pct { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); }
+
+  .fair-price {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--green);
+  }
+  .price-bar {
+    display: block;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--green-light);
+    margin-top: 4px;
+    opacity: 0.5;
+  }
+
+  .prev-price { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); }
+
+  .diff { font-family: var(--font-mono); font-size: 12px; font-weight: 500; }
+  .diff.up { color: #1a7a3a; }
+  .diff.down { color: var(--red); }
+  .diff.flat { color: var(--text-muted); }
+
+  .badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+  .badge.buy { background: #e8f5ed; color: #1a6b36; border: 1px solid #b8e0c5; }
+  .badge.pass { background: #fdecea; color: #a02020; border: 1px solid #f5bfbb; }
+  .badge.fair { background: #edf3fb; color: #1a4a7a; border: 1px solid #b8d0ef; }
+  .badge.hot { background: #fdf6e3; color: #7a4a00; border: 1px solid #e8d08a; }
+  .badge.new { background: #f3edfb; color: #5a1a9a; border: 1px solid #cbb8ef; }
+
+  .add-btn {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid var(--cream-dark);
+    background: var(--white);
+    color: var(--text-muted);
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .add-btn:hover { border-color: var(--green-light); color: var(--green); }
+  .add-btn.added { background: var(--green); color: var(--white); border-color: var(--green); }
+
+  /* LEGEND */
+  .legend {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+  }
+  .legend span { display: flex; align-items: center; gap: 5px; }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    border-top: 1px solid var(--cream-dark);
+    margin-top: 2rem;
+  }
+  .footer strong { color: var(--green); }
+
+  /* METHODOLOGY */
+  .method-box {
+    background: var(--white);
+    border: 1px solid var(--cream-dark);
+    border-left: 3px solid var(--green-light);
+    border-radius: 0 8px 8px 0;
+    padding: 1rem 1.25rem;
+    margin-top: 1.5rem;
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+  .method-box strong { color: var(--text); font-weight: 600; display: block; margin-bottom: 4px; }
+
+  @media (max-width: 600px) {
+    .header { padding: 1.5rem 1rem 1.5rem; }
+    .main { padding: 1rem; }
+    th:nth-child(5), td:nth-child(5),
+    th:nth-child(6), td:nth-child(6) { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="header-top">
+      <div class="masthead">
+        <div class="masthead-eyebrow">&#9971; Augusta National · April 9–12, 2026</div>
+        <h1>Masters <span>Calcutta</span><br>Cheat Sheet</h1>
+        <div class="masthead-sub">Fair auction prices · Vegas odds · 5-year history · $1,250 cap</div>
+      </div>
+    </div>
+    <div class="payout-pills">
+      <div class="payout-pill"><span class="pp-label">Est. pot</span><span class="pp-val">~$11,500</span></div>
+      <div class="payout-pill"><span class="pp-label">Green jacket (20%)</span><span class="pp-val">~$2,300</span></div>
+      <div class="payout-pill"><span class="pp-label">Best aggregate (40%)</span><span class="pp-val">~$4,600</span></div>
+      <div class="payout-pill"><span class="pp-label">2nd aggregate (20%)</span><span class="pp-val">~$2,300</span></div>
+      <div class="payout-pill"><span class="pp-label">Daily low (each)</span><span class="pp-val">~$575</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- CAP TRACKER -->
+  <div class="cap-section">
+    <div class="cap-label">Your cap</div>
+    <div class="cap-bar-wrap">
+      <div class="cap-bar-bg"><div class="cap-bar-fill" id="capBar" style="width:0%"></div></div>
+    </div>
+    <div class="cap-number" id="capNum">$0 / $1,250</div>
+    <div class="cap-roster" id="capRoster"></div>
+  </div>
+
+  <!-- CONTROLS -->
+  <div class="controls">
+    <div class="search-wrap">
+      <span class="search-icon">&#128269;</span>
+      <input type="text" id="search" placeholder="Search player…" oninput="applyFilters()" />
+    </div>
+    <button class="filter-btn on" onclick="toggleFilter('all')" id="f-all">All</button>
+    <button class="filter-btn" onclick="toggleFilter('buy')" id="f-buy">Undervalued</button>
+    <button class="filter-btn" onclick="toggleFilter('pass')" id="f-pass">Likely overbid</button>
+    <button class="filter-btn" onclick="toggleFilter('hot')" id="f-hot">Hot form</button>
+  </div>
+
+  <div class="legend">
+    <span><span class="badge buy">undervalued</span> fair price &gt; 25% above 2025</span>
+    <span><span class="badge pass">likely overbid</span> fair price &gt; 25% below 2025</span>
+    <span><span class="badge hot">hot form</span> strong 2026 form</span>
+    <span><span class="badge new">new</span> not in 2025 field</span>
+  </div>
+
+  <div class="table-wrap">
+    <div class="table-scroll">
+      <table id="mainTable">
+        <thead>
+          <tr>
+            <th onclick="sortBy('name')" id="th-name">Player</th>
+            <th onclick="sortBy('odds')" id="th-odds">Vegas odds</th>
+            <th onclick="sortBy('winProb')" id="th-winProb">Win %</th>
+            <th onclick="sortBy('fair')" id="th-fair">Fair price ▼</th>
+            <th onclick="sortBy('prev')" id="th-prev">2025 actual</th>
+            <th onclick="sortBy('diff')" id="th-diff">Δ vs 2025</th>
+            <th>Value</th>
+            <th>Roster</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="method-box">
+    <strong>How fair prices are calculated</strong>
+    Vegas odds (FanDuel/BetMGM, April 2026) were vig-adjusted to get true win probabilities. Expected value was computed across all four payout buckets — green jacket (20%), best 3-golfer aggregate (40%), 2nd aggregate (20%), and daily low gross (20%). The model was calibrated against 5 years of auction history so Scheffler's fair price ($720) aligns with your group's consistent pricing of the field's top odds. "Δ vs 2025" shows how much more or less you should expect to pay compared to last year's auction.
+  </div>
+
+</div>
+
+<div class="footer">
+  Built for the <strong>2026 Masters Calcutta</strong> · Odds via FanDuel &amp; BetMGM · April 4, 2026 · Click column headers to sort · Click players to add to your roster
+</div>
+
+<script>
+const PLAYERS = [
+  {name:"Scottie Scheffler",   odds:500,   oddsStr:"+500",   winProb:9.87, fair:720,  prev:725,  tags:[]},
+  {name:"Bryson DeChambeau",   odds:1000,  oddsStr:"+1000",  winProb:5.38, fair:490,  prev:310,  tags:['hot']},
+  {name:"Jon Rahm",            odds:1000,  oddsStr:"+1000",  winProb:5.38, fair:490,  prev:395,  tags:[]},
+  {name:"Rory McIlroy",        odds:1100,  oddsStr:"+1100",  winProb:4.94, fair:450,  prev:320,  tags:[]},
+  {name:"Xander Schauffele",   odds:1500,  oddsStr:"+1500",  winProb:3.70, fair:340,  prev:325,  tags:[]},
+  {name:"Ludvig Åberg",        odds:1600,  oddsStr:"+1600",  winProb:3.48, fair:320,  prev:390,  tags:[]},
+  {name:"Matt Fitzpatrick",    odds:2000,  oddsStr:"+2000",  winProb:2.82, fair:260,  prev:240,  tags:['hot']},
+  {name:"Cameron Young",       odds:2000,  oddsStr:"+2000",  winProb:2.82, fair:260,  prev:40,   tags:['hot']},
+  {name:"Tommy Fleetwood",     odds:2200,  oddsStr:"+2200",  winProb:2.58, fair:230,  prev:290,  tags:[]},
+  {name:"Patrick Reed",        odds:2700,  oddsStr:"+2700",  winProb:2.12, fair:190,  prev:190,  tags:['hot']},
+  {name:"Justin Rose",         odds:2700,  oddsStr:"+2700",  winProb:2.12, fair:190,  prev:110,  tags:[]},
+  {name:"Collin Morikawa",     odds:2700,  oddsStr:"+2700",  winProb:2.12, fair:190,  prev:485,  tags:[]},
+  {name:"Brooks Koepka",       odds:3000,  oddsStr:"+3000",  winProb:1.91, fair:180,  prev:315,  tags:[]},
+  {name:"Jordan Spieth",       odds:3300,  oddsStr:"+3300",  winProb:1.74, fair:160,  prev:250,  tags:[]},
+  {name:"Hideki Matsuyama",    odds:3500,  oddsStr:"+3500",  winProb:1.65, fair:150,  prev:270,  tags:[]},
+  {name:"Min Woo Lee",         odds:3500,  oddsStr:"+3500",  winProb:1.65, fair:150,  prev:200,  tags:[]},
+  {name:"Robert MacIntyre",    odds:4000,  oddsStr:"+4000",  winProb:1.44, fair:130,  prev:205,  tags:[]},
+  {name:"Viktor Hovland",      odds:4000,  oddsStr:"+4000",  winProb:1.44, fair:130,  prev:230,  tags:[]},
+  {name:"Shane Lowry",         odds:4500,  oddsStr:"+4500",  winProb:1.29, fair:120,  prev:290,  tags:[]},
+  {name:"Chris Gotterup",      odds:5000,  oddsStr:"+5000",  winProb:1.16, fair:110,  prev:null, tags:['hot']},
+  {name:"Tyrrell Hatton",      odds:5500,  oddsStr:"+5500",  winProb:1.06, fair:100,  prev:200,  tags:[]},
+  {name:"Russell Henley",      odds:5500,  oddsStr:"+5500",  winProb:1.06, fair:100,  prev:225,  tags:[]},
+  {name:"Patrick Cantlay",     odds:5500,  oddsStr:"+5500",  winProb:1.06, fair:100,  prev:260,  tags:[]},
+  {name:"Akshay Bhatia",       odds:5500,  oddsStr:"+5500",  winProb:1.06, fair:100,  prev:130,  tags:[]},
+  {name:"Si Woo Kim",          odds:5500,  oddsStr:"+5500",  winProb:1.06, fair:100,  prev:null, tags:[]},
+  {name:"Sepp Straka",         odds:6000,  oddsStr:"+6000",  winProb:0.97, fair:90,   prev:210,  tags:[]},
+  {name:"Joaquín Niemann",     odds:6000,  oddsStr:"+6000",  winProb:0.97, fair:90,   prev:330,  tags:[]},
+  {name:"Sam Burns",           odds:6500,  oddsStr:"+6500",  winProb:0.90, fair:80,   prev:70,   tags:[]},
+  {name:"Justin Thomas",       odds:6500,  oddsStr:"+6500",  winProb:0.90, fair:80,   prev:375,  tags:[]},
+  {name:"Corey Conners",       odds:6500,  oddsStr:"+6500",  winProb:0.90, fair:80,   prev:190,  tags:[]},
+  {name:"Jason Day",           odds:6500,  oddsStr:"+6500",  winProb:0.90, fair:80,   prev:165,  tags:[]},
+  {name:"Adam Scott",          odds:6500,  oddsStr:"+6500",  winProb:0.90, fair:80,   prev:100,  tags:[]},
+  {name:"Sungjae Im",          odds:7000,  oddsStr:"+7000",  winProb:0.84, fair:80,   prev:90,   tags:[]},
+  {name:"Marco Penge",         odds:7000,  oddsStr:"+7000",  winProb:0.84, fair:80,   prev:null, tags:[]},
+  {name:"Jacob Bridgeman",     odds:7500,  oddsStr:"+7500",  winProb:0.78, fair:70,   prev:null, tags:[]},
+  {name:"Gary Woodland",       odds:7500,  oddsStr:"+7500",  winProb:0.78, fair:70,   prev:null, tags:[]},
+  {name:"Nicolai Højgaard",    odds:8000,  oddsStr:"+8000",  winProb:0.73, fair:70,   prev:50,   tags:[]},
+  {name:"Cameron Smith",       odds:8000,  oddsStr:"+8000",  winProb:0.73, fair:70,   prev:230,  tags:[]},
+  {name:"Sahith Theegala",     odds:8000,  oddsStr:"+8000",  winProb:0.73, fair:70,   prev:70,   tags:[]},
+  {name:"J.J. Spaun",          odds:8000,  oddsStr:"+8000",  winProb:0.73, fair:70,   prev:100,  tags:[]},
+  {name:"Harris English",      odds:8000,  oddsStr:"+8000",  winProb:0.73, fair:70,   prev:80,   tags:[]},
+  {name:"Daniel Berger",       odds:8000,  oddsStr:"+8000",  winProb:0.73, fair:70,   prev:95,   tags:[]},
+  {name:"Maverick McNealy",    odds:10000, oddsStr:"+10000", winProb:0.59, fair:50,   prev:70,   tags:[]},
+  {name:"Thomas Detry",        odds:10000, oddsStr:"+10000", winProb:0.59, fair:50,   prev:90,   tags:[]},
+  {name:"Brian Harman",        odds:10000, oddsStr:"+10000", winProb:0.59, fair:50,   prev:70,   tags:[]},
+  {name:"Tony Finau",          odds:10000, oddsStr:"+10000", winProb:0.59, fair:50,   prev:160,  tags:[]},
+  {name:"Max Homa",            odds:10000, oddsStr:"+10000", winProb:0.59, fair:50,   prev:40,   tags:[]},
+  {name:"Will Zalatoris",      odds:10000, oddsStr:"+10000", winProb:0.59, fair:50,   prev:260,  tags:[]},
+  {name:"Casey Jarvis",        odds:10000, oddsStr:"+10000", winProb:0.59, fair:50,   prev:null, tags:['hot']},
+  {name:"Denny McCarthy",      odds:15000, oddsStr:"+15000", winProb:0.39, fair:40,   prev:80,   tags:[]},
+  {name:"Billy Horschel",      odds:15000, oddsStr:"+15000", winProb:0.39, fair:40,   prev:80,   tags:[]},
+  {name:"Tom Hoge",            odds:20000, oddsStr:"+20000", winProb:0.29, fair:30,   prev:60,   tags:[]},
+  {name:"Wyndham Clark",       odds:20000, oddsStr:"+20000", winProb:0.29, fair:30,   prev:100,  tags:[]},
+];
+
+const CAP = 1250;
+let roster = {};
+let activeFilter = 'all';
+let sortCol = 'fair';
+let sortDir = -1;
+const maxFair = Math.max(...PLAYERS.map(p => p.fair));
+
+function getTag(p) {
+  if (p.prev === null) return 'new';
+  if (p.tags.includes('hot')) return 'hot';
+  const ratio = p.fair / p.prev;
+  if (ratio >= 1.25) return 'buy';
+  if (ratio <= 0.75) return 'pass';
+  return 'fair';
+}
+
+function toggleFilter(f) {
+  activeFilter = f;
+  ['all','buy','pass','hot'].forEach(k => document.getElementById('f-'+k).classList.remove('on'));
+  document.getElementById('f-'+f).classList.add('on');
+  renderTable();
+}
+
+function sortBy(col) {
+  if (sortCol === col) sortDir *= -1;
+  else { sortCol = col; sortDir = -1; }
+  document.querySelectorAll('th').forEach(t => t.classList.remove('sorted'));
+  document.getElementById('th-'+col).classList.add('sorted');
+  renderTable();
+}
+
+function toggleRoster(name) {
+  const p = PLAYERS.find(x => x.name === name);
+  if (!p) return;
+  if (roster[name]) {
+    delete roster[name];
+  } else {
+    if (Object.values(roster).reduce((a,b)=>a+b,0) + p.fair > CAP) {
+      alert('Adding ' + name + ' ($' + p.fair + ') would exceed your $1,250 cap!');
+      return;
+    }
+    roster[name] = p.fair;
+  }
+  updateCap();
+  renderTable();
+}
+
+function removeFromRoster(name) {
+  delete roster[name];
+  updateCap();
+  renderTable();
+}
+
+function updateCap() {
+  const spent = Object.values(roster).reduce((a,b)=>a+b,0);
+  const pct = Math.min(100, spent / CAP * 100);
+  const bar = document.getElementById('capBar');
+  bar.style.width = pct + '%';
+  bar.style.background = pct > 90 ? '#c0392b' : pct > 70 ? '#c9a84c' : '#4a9a6a';
+  document.getElementById('capNum').textContent = '$' + spent + ' / $' + CAP;
+  const names = Object.keys(roster);
+  const rosterEl = document.getElementById('capRoster');
+  if (names.length > 0) {
+    rosterEl.style.display = 'block';
+    rosterEl.innerHTML = '<strong style="color:var(--green);font-size:11px;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.08em">Your roster · $' + spent + ' committed</strong><br>' +
+      names.map(n => `<span class="roster-tag" onclick="removeFromRoster('${n.replace(/'/g,"\\'")}')" title="Click to remove">${n} $${roster[n]}</span>`).join('');
+  } else {
+    rosterEl.style.display = 'none';
+  }
+}
+
+function applyFilters() { renderTable(); }
+
+function renderTable() {
+  const q = document.getElementById('search').value.toLowerCase();
+  let data = PLAYERS.filter(p => {
+    if (q && !p.name.toLowerCase().includes(q)) return false;
+    const tag = getTag(p);
+    if (activeFilter === 'buy') return tag === 'buy';
+    if (activeFilter === 'pass') return tag === 'pass';
+    if (activeFilter === 'hot') return p.tags.includes('hot');
+    return true;
+  });
+
+  data.sort((a, b) => {
+    let av, bv;
+    if (sortCol === 'name') return sortDir * a.name.localeCompare(b.name);
+    if (sortCol === 'diff') { av = a.prev ? a.fair - a.prev : -9999; bv = b.prev ? b.fair - b.prev : -9999; }
+    else if (sortCol === 'prev') { av = a.prev || 0; bv = b.prev || 0; }
+    else { av = a[sortCol]; bv = b[sortCol]; }
+    return sortDir * (av - bv);
+  });
+
+  document.getElementById('tbody').innerHTML = data.map(p => {
+    const tag = getTag(p);
+    const diff = p.prev != null ? p.fair - p.prev : null;
+    const diffHtml = diff === null
+      ? '<span class="diff flat">—</span>'
+      : diff > 0
+        ? `<span class="diff up">+$${diff}</span>`
+        : diff < 0
+          ? `<span class="diff down">-$${Math.abs(diff)}</span>`
+          : `<span class="diff flat">—</span>`;
+    const badgeMap = {buy:'undervalued', pass:'likely overbid', fair:'market fair', hot:'hot form', new:'new'};
+    const barW = Math.round(p.fair / maxFair * 100);
+    const inR = !!roster[p.name];
+    return `<tr class="${inR ? 'in-roster' : ''}">
+      <td><span class="player-name ${p.odds <= 1100 ? 'favorite' : ''}">${p.name}</span></td>
+      <td><span class="odds-tag">${p.oddsStr}</span></td>
+      <td><span class="win-pct">${p.winProb.toFixed(1)}%</span></td>
+      <td>
+        <span class="fair-price">$${p.fair}</span>
+        <span class="price-bar" style="width:${barW}%"></span>
+      </td>
+      <td><span class="prev-price">${p.prev != null ? '$'+p.prev : '—'}</span></td>
+      <td>${diffHtml}</td>
+      <td><span class="badge ${tag}">${badgeMap[tag]||tag}</span></td>
+      <td><button class="add-btn ${inR ? 'added' : ''}" onclick="toggleRoster('${p.name.replace(/'/g,"\\'")}')">
+        ${inR ? '✓ added' : '+ add'}
+      </button></td>
+    </tr>`;
+  }).join('');
+}
+
+renderTable();
+</script>
+</body>
+</html>
